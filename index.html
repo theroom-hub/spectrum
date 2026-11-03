@@ -39,12 +39,27 @@
   .small { font-size: 13px; line-height: 1.5; }
 
   /* top bar */
-  .top { position: sticky; top: 0; z-index: 10; background: rgba(243,243,241,.86); backdrop-filter: saturate(1.4) blur(14px); }
-  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 78px; }
-  .brand { display: block; line-height: 0; }
-  .brand img { height: 49px; width: auto; }
-  @media (max-width: 420px) { .brand img { height: 40px; } }
-  .nav { display: flex; gap: 22px; font-size: 15px; }
+  /* header: big logo like the brochure cover, shrinks into a bar on scroll */
+  .top { position: fixed; top: 0; left: 0; right: 0; z-index: 10; background: rgba(243,243,241,0); transition: background .25s, box-shadow .25s; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 36px; padding-bottom: 20px; transition: padding .25s; }
+  .brand { display: block; line-height: 0; flex: none; }
+  .brand img { height: 84px; width: auto; transition: height .25s; }
+  .top .right { display: flex; align-items: center; gap: 28px; }
+  .top.compact { background: rgba(243,243,241,.88); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); box-shadow: 0 1px 0 var(--line); }
+  .top.compact .wrap { padding-top: 12px; padding-bottom: 12px; }
+  .top.compact .brand img { height: 46px; }
+  @media (max-width: 760px) {
+    .top .wrap { padding-top: 20px; padding-bottom: 12px; }
+    .brand img { height: 56px; }
+    .top.compact .brand img { height: 40px; }
+  }
+  @media (max-width: 440px) {
+    .brand img { height: 46px; }
+    .top.compact .brand img { height: 38px; }
+    .top .btn { font-size: 14px; padding: 9px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .top, .top .wrap, .brand img { transition: none; } }
+  .nav { display: flex; gap: 24px; font-size: 15px; }
   .nav a { color: var(--ink-2); text-decoration: none; }
   .nav a:hover { color: var(--ink); }
   .btn { display: inline-block; background: var(--ink); color: var(--on-dark); text-decoration: none; font-weight: 500; font-size: 15px; padding: 11px 18px; border-radius: 10px; white-space: nowrap; }
@@ -55,7 +70,9 @@
   section + section { border-top: 1px solid var(--line); }
 
   /* hero */
-  .hero { padding: 72px 0 80px; }
+  .hero { padding: 196px 0 80px; }
+  @media (max-width: 760px) { .hero { padding-top: 128px; } }
+  @media (max-width: 440px) { .hero { padding-top: 112px; } }
   .hero-visual { position: relative; margin-top: 56px; }
   .hero-visual .board { width: 82%; }
   .hero-visual .order { position: absolute; right: 0; bottom: -40px; width: 40%; }
@@ -152,7 +169,8 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#" aria-label="Spectrum Smart Lab"><img src="assets/logo.svg" alt="Spectrum Smart Lab" width="222" height="49"></a>
+    <a class="brand" href="#" aria-label="Spectrum Smart Lab"><img src="assets/logo.svg" alt="Spectrum Smart Lab" width="377" height="84"></a>
+    <div class="right">
     <nav class="nav" aria-label="Sections">
       <a href="#how">How it works</a>
       <a href="#production">Production</a>
@@ -161,8 +179,16 @@
       <a href="#data">Your data</a>
     </nav>
     <a class="btn" href="#access" data-open-form>Early access</a>
+    </div>
   </div>
 </header>
+<script>
+(() => {
+  const top = document.querySelector('.top');
+  const set = () => top.classList.toggle('compact', scrollY > 24);
+  addEventListener('scroll', set, { passive: true }); set();
+})();
+</script>
 
 <main>
   <section class="hero">

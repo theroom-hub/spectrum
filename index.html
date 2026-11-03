@@ -84,9 +84,9 @@
   .hero h1 { font-size: clamp(46px, 7.2vw, 106px); line-height: .92; letter-spacing: -0.055em; font-weight: 500; max-width: 16ch; }
   .hero .lead { margin-top: 28px; max-width: 34ch; font-size: clamp(18px, 1.7vw, 22px); line-height: 1.5; color: var(--on-dark-2); }
   .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 40px; }
-  .hero-visual { position: relative; margin-top: clamp(40px, 5vw, 64px); margin-bottom: clamp(150px, 14vw, 200px); }
+  .hero-visual { position: relative; margin-top: clamp(40px, 5vw, 64px); margin-bottom: clamp(190px, 17vw, 240px); }
   .hero-visual .board { width: 80%; border-radius: 12px 12px 12px 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 60px 120px -30px rgba(219,138,58,.35), 0 40px 80px -20px rgba(0,0,0,.6); }
-  .hero-visual .order { position: absolute; right: 0; top: 36%; width: 38%; border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 50px 100px -20px rgba(0,0,0,.7); }
+  .hero-visual .order { position: absolute; right: 0; top: 56%; width: 38%; border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 50px 100px -20px rgba(0,0,0,.7); }
   .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding-bottom: 40px; }
   .facts h3 { color: var(--on-dark); }
   .facts p { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--on-dark-2); }
@@ -244,7 +244,7 @@
       <defs>
         <filter id="soft" x="-60%" y="-20%" width="220%" height="140%"><feGaussianBlur stdDeviation="44"/></filter>
         <filter id="edge" x="-20%" y="-10%" width="140%" height="120%"><feGaussianBlur stdDeviation="7"/></filter>
-        <linearGradient id="topfade" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse"><stop offset="0.03" stop-color="#000"/><stop offset="0.16" stop-color="#fff"/><stop offset="0.72" stop-color="#fff"/><stop offset="0.88" stop-color="#000"/></linearGradient>
+        <linearGradient id="topfade" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse"><stop offset="0.03" stop-color="#000"/><stop offset="0.16" stop-color="#fff"/><stop offset="0.62" stop-color="#fff"/><stop offset="0.8" stop-color="#000"/></linearGradient>
         <mask id="raymask" maskUnits="userSpaceOnUse" x="0" y="0" width="2000" height="1800"><rect width="2000" height="1800" fill="url(#topfade)"/></mask>
       </defs>
       <g class="glow" mask="url(#raymask)">
@@ -264,8 +264,8 @@
       <h1>The production system for film labs.</h1>
       <p class="lead">Orders, payments and delivery in one calm place, with an AI that turns and names every scan without touching a pixel.</p>
       <div class="hero-visual">
-        <img class="board" src="assets/board.jpg" alt="Spectrum production board with this week's orders" width="2000" height="1083">
-        <img class="order" src="assets/order2_cover.jpg" alt="Order screen with progress, prices, payment and invoice" width="1404" height="1300">
+        <img class="board" src="assets/board_hero.jpg" alt="Spectrum production board: a busy Tuesday with 15 orders and an overdue order pinned at the side" width="2400" height="1320">
+        <img class="order" src="assets/order_hero.jpg" alt="Order screen with progress, prices, payment and invoice" width="2160" height="1850">
       </div>
       <div class="facts">
         <div><h3>Orders and payments</h3><p>Priced from your list, paid on the terminal, invoiced.</p></div>

@@ -252,34 +252,8 @@
   .access .note { color: var(--on-dark-2); font-size: 15px; }
 
 
-  /* early access form */
-  dialog.form { border: 0; padding: 0; border-radius: 20px; width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px); background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px rgba(17,17,17,.3); }
-  dialog.form::backdrop { background: rgba(17,17,17,.45); backdrop-filter: blur(4px); }
-  .form-in { padding: clamp(24px, 5vw, 40px); }
-  .form-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-  .form-head h2 { font-size: clamp(26px, 4vw, 32px); margin-top: 10px; }
-  .x { appearance: none; border: 0; background: #EFEFEC; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; line-height: 1; cursor: pointer; color: var(--ink); flex: none; }
-  .x:hover { background: #E4E4E0; }
-  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-top: 24px; }
-  .fields .full { grid-column: 1 / -1; }
-  @media (max-width: 520px) { .fields { grid-template-columns: 1fr; } }
-  .fields label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
-  .fields input, .fields textarea { width: 100%; font: 16px/1.4 var(--sans); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; }
-  .fields textarea { min-height: 96px; resize: vertical; }
-  .fields input:focus, .fields textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
-  .hp { position: absolute; left: -9999px; }
-  .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 22px; }
-  .form-foot .btn { border: 0; cursor: pointer; font-family: var(--sans); font-size: 16px; padding: 13px 22px; }
-  .form-foot .btn[disabled] { opacity: .5; cursor: default; }
-  .status { font-size: 14px; color: var(--mid); }
-  .status.err { color: var(--accent); }
-  .done { display: none; padding: 8px 0 4px; }
-  .sent .fields, .sent .form-foot, .sent .form-intro { display: none; }
-  .sent .done { display: block; }
 
-  dialog.form .label { font-size: 14px; color: var(--rust); }
   .muted { color: var(--mid); }
-  dialog.form .btn { border-radius: 999px; }
 </style>
 </head>
 <body>
@@ -298,7 +272,6 @@
         <a href="#delivery">Delivery</a>
         <a href="#data">Your data</a>
       </nav>
-      <a class="btn light" href="#access" data-open-form>Early access</a>
     </div>
   </div>
 </header>
@@ -469,28 +442,6 @@
     </div>
   </section>
 
-  <section class="s dark access" id="access">
-    <svg class="beam" viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-      <defs><filter id="soft2" x="-60%" y="-20%" width="220%" height="140%"><feGaussianBlur stdDeviation="50"/></filter></defs>
-      <g filter="url(#soft2)" opacity=".75">
-        <polygon points="1080,-250 1150,-250 1560,1150 1420,1150" fill="#A63A16"/>
-        <polygon points="1150,-250 1220,-250 1700,1150 1560,1150" fill="#DB8A3A" opacity=".9"/>
-        <polygon points="1220,-250 1290,-250 1840,1150 1700,1150" fill="#F2C27E" opacity=".75"/>
-      </g>
-    </svg>
-    <div class="wrap">
-      <p class="kicker"><b>Early access</b></p>
-      <h2>We are inviting a small group of labs to start with Spectrum.</h2>
-      <ul>
-        <li>Full support with installation and syncing across your lab</li>
-        <li>Customisation with your lab's own branding and logo</li>
-        <li>A direct line to the developers</li>
-      </ul>
-      <div class="cta">
-        <a class="btn light" href="#access" data-open-form>Request early access</a>
-      </div>
-    </div>
-  </section>
 </main>
 
 
@@ -603,71 +554,7 @@
 })();
 </script>
 
-<dialog class="form" id="early" aria-labelledby="early-title">
-  <form class="form-in" id="early-form" action="https://formspree.io/f/xvkkveey" method="POST" novalidate>
-    <div class="form-head">
-      <div><div class="label">Early access</div><h2 id="early-title">Tell us about your lab.</h2></div>
-      <button class="x" type="button" data-close aria-label="Close">&times;</button>
-    </div>
-    <p class="muted form-intro" style="margin:12px 0 0;font-size:15px">We will reply personally within a few days.</p>
-    <div class="fields">
-      <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
-      <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div><label for="f-lab">Lab name</label><input id="f-lab" name="lab" autocomplete="organization" required></div>
-      <div><label for="f-city">City and country</label><input id="f-city" name="city"></div>
-      <div><label for="f-scan">Scanners you use</label><input id="f-scan" name="scanners" placeholder="Noritsu, Frontier, Phase One…"></div>
-      <div><label for="f-rolls">Rolls per week, roughly</label><input id="f-rolls" name="rolls_per_week" inputmode="numeric"></div>
-      <div class="full"><label for="f-msg">Anything else</label><textarea id="f-msg" name="message"></textarea></div>
-      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-    </div>
-    <div class="form-foot">
-      <span class="status" id="early-status" role="status"></span>
-      <button class="btn" type="submit">Send request</button>
-    </div>
-    <div class="done" role="status">
-      <h3 style="font-size:22px">Thank you.</h3>
-      <p class="muted" style="margin:8px 0 0">Your request is on its way. We will write to you within a few days.</p>
-    </div>
-  </form>
-</dialog>
 
-<script>
-(() => {
-  const dlg = document.getElementById('early'), form = document.getElementById('early-form');
-  const ENDPOINT = form.action;
-  const status = document.getElementById('early-status'), btn = form.querySelector('[type=submit]');
-  document.querySelectorAll('[data-open-form]').forEach(a => a.addEventListener('click', e => {
-    if (!dlg.showModal) return;
-    e.preventDefault(); dlg.showModal(); setTimeout(() => form.querySelector('input').focus(), 50);
-  }));
-  dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
-  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    status.className = 'status'; status.textContent = '';
-    const missing = [...form.querySelectorAll('[required]')].find(i => !i.value.trim());
-    if (missing || !form.email.checkValidity()) {
-      status.className = 'status err';
-      status.textContent = missing ? 'Please fill in your name, email and lab.' : 'Please check the email address.';
-      (missing || form.email).focus(); return;
-    }
-    btn.disabled = true; status.textContent = 'Sending…';
-    const data = new FormData(form);
-    data.append('_subject', 'Spectrum early access: ' + (form.lab.value.trim() || form.name.value.trim()));
-    try {
-      const r = await fetch(ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-      if (!r.ok) {
-        const j = await r.json().catch(() => ({}));
-        throw new Error((j.errors || []).map(x => x.message).join(' ') || r.status);
-      }
-      form.classList.add('sent'); status.textContent = '';
-    } catch (err) {
-      status.className = 'status err';
-      status.textContent = /\D/.test(err.message) ? err.message : 'Something went wrong. Please try again in a moment.';
-    } finally { btn.disabled = false; }
-  });
-})();
-</script>
 
 </body>
 </html>
